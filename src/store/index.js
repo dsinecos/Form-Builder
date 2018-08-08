@@ -1,7 +1,8 @@
-import { createStore, compose } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import reducers from '../reducers';
 
 import { AsyncStorage } from 'react-native';
+import logger from 'redux-logger';
 
 // Setup with redux-persist ~ 4
 // import { persistStore, autoRehydrate } from 'redux-persist';
@@ -21,5 +22,5 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 
-export const reduxStore = createStore(persistedReducer);
+export const reduxStore = createStore(persistedReducer, applyMiddleware(logger));
 export const persistor = persistStore(reduxStore);

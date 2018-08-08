@@ -181,7 +181,16 @@ When the state is updated, `componentDidUpdate` will be invoked again, but will 
 ```
 
 2. #### Connect the form component to redux store via `redux-form`
+    ##### Objectives
+    - Integrate fields with redux-form's `Field` component
+    - Have dynamic form names against which the form data is stored in redux store (which will correspond to a combination of UserID and FormID)
 
-3. #### Migrating from redux-persist@4.6.0 to redux-persist@5.x
+3. #### Setting up redux-persist
+    ##### Objectives
+    - Setup redux-persist@4.6.0 
+      - Integrate with redux-form to persist form data
+      - Delay rendering of components until persisted form data has been loaded
+    - Migrate to redux-persist@5.x 
 
+4. #### Setting up redux-offline
 

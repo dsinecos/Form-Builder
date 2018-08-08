@@ -181,3 +181,7 @@ When the state is updated, `componentDidUpdate` will be invoked again, but will 
 ```
 
 2. #### Connect the form component to redux store via `redux-form`
+
+3. #### Migrating from redux-persist@4.6.0 to redux-persist@5.x
+
+

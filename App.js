@@ -3,10 +3,10 @@ import { StyleSheet, View } from 'react-native';
 import { Provider } from 'react-redux';
 // import { createStore } from 'redux';
 // import reducers from './src/reducers';
-// import { persistor, store } from './src/store';
-// import { PersistGate } from 'redux-persist/lib/integration/react';
+import { persistor, reduxStore } from './src/store';
+import { PersistGate } from 'redux-persist/lib/integration/react';
 
-import reduxStore from './src/store';
+// import reduxStore from './src/store';
 
 import devToolsEnhancer from 'remote-redux-devtools';
 
@@ -105,6 +105,7 @@ export default class App extends React.Component {
 
     return (
       <Provider store={reduxStore}>
+        {/* <PersistGate loading={<Expo.AppLoading />} persistor={persistor}> */}
           <Container>
             {this.renderHeader()}
             <Content padder>
@@ -112,6 +113,7 @@ export default class App extends React.Component {
               <FormContainer />
             </Content>
           </Container>
+        {/* </PersistGate> */}
       </Provider>
     );
   }

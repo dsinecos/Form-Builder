@@ -2,25 +2,65 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import reducers from '../reducers';
 
 import { AsyncStorage } from 'react-native';
-import logger from 'redux-logger';
+import reduxLogger from 'redux-logger';
 
 // Setup with redux-persist ~ 4
-// import { persistStore, autoRehydrate } from 'redux-persist';
+import { persistStore, autoRehydrate } from 'redux-persist';
 
-// const store = createStore(reducers, {}, compose(autoRehydrate()));
-// persistStore(store, { storage: AsyncStorage, whitelist: ['form', 'formTemplates'] }).purge();
+import React, { Component } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { Provider } from 'react-redux';
 
-// export default store;
+const reduxStore = createStore(reducers, {}, compose(applyMiddleware(reduxLogger), autoRehydrate()));
 
-// Setup with redux-persist > 5.0
-import { persistStore, persistReducer } from 'redux-persist';
+class Initialize extends Component {
+    constructor() {
+        super();
+        this.state = { isRehydrated: false };
+    }
 
-const persistConfig = {
-    key: 'root',
-    storage: AsyncStorage
+    componentWillMount() {
+        persistStore(reduxStore, { storage: AsyncStorage, whitelist: ['form', 'formTemplates'] }, () => {
+            this.setState({ isRehydrated: true });
+        });
+    }
+
+    render() {
+        return this.state.isRehydrated ?
+            (
+                <Provider store={reduxStore}>
+                    {this.props.children}
+                </Provider>
+            ) :
+            (
+                <View style={styles.container}>
+                    <Text>Rehydrating</Text>
+                </View>
+            )
+
+    }
 }
 
-const persistedReducer = persistReducer(persistConfig, reducers);
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
+});
 
-export const reduxStore = createStore(persistedReducer, applyMiddleware(logger));
-export const persistor = persistStore(reduxStore);
+export default Initialize;
+
+// Setup with redux-persist > 5.0
+// import { persistStore, persistReducer } from 'redux-persist';
+
+// const persistConfig = {
+//     key: 'root',
+//     storage: AsyncStorage
+// }
+
+// const persistedReducer = persistReducer(persistConfig, reducers);
+
+// export const reduxStore = createStore(persistedReducer, applyMiddleware(reduxLogger));
+// export const persistor = persistStore(reduxStore);

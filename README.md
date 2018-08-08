@@ -200,14 +200,13 @@ When the state is updated, `componentDidUpdate` will be invoked again, but will 
       - Integrate with redux-form to persist form data
       - Delay rendering of components until persisted form data has been loaded
         - Reference - [Build a component that does not render the app until rehydration completes](https://stackoverflow.com/questions/46895278/offline-state-not-rehydrating-with-redux-offline)
-
     - Migrate to redux-persist@5.x 
       - [Reference - Redux@5.x Documentation](https://github.com/rt2zz/redux-persist)
       - [Reference - Tutorial on migrating to @5.x](https://blog.reactnativecoach.com/the-definitive-guide-to-redux-persist-84738167975)
 
 4. #### Setting up redux-offline
-  - [Reference - Make your offline-first React app with Redux-Offline](http://jslancer.com/blog/2017/05/23/no-internet-no-problem/)
-  - [Reference - Introducing Redux Offline: Offline-First Architecture for Progressive Web Applications and React Native](https://hackernoon.com/introducing-redux-offline-offline-first-architecture-for-progressive-web-applications-and-react-68c5167ecfe0)
-  - [Reference - Adding Offline support to Redux](https://medium.com/@ianovenden/adding-offline-support-to-redux-ac8eb8873035)
+    - [Reference - Make your offline-first React app with Redux-Offline](http://jslancer.com/blog/2017/05/23/no-internet-no-problem/)
+    - [Reference - Introducing Redux Offline: Offline-First Architecture for Progressive Web Applications and React Native](https://hackernoon.com/introducing-redux-offline-offline-first-architecture-for-progressive-web-applications-and-react-68c5167ecfe0)
+    - [Reference - Adding Offline support to Redux](https://medium.com/@ianovenden/adding-offline-support-to-redux-ac8eb8873035)
 
 

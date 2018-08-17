@@ -18,19 +18,19 @@ import {
  *  Dummy variable to simulate props recieved as param when this screen is loaded.
  *  To be replaced by `this.props.param.formID`
  */
-const FormIDFromParam = "testFormID";
+// const FormIDFromParam = "testFormID";
 
 /**
  * Renders various form fields from JSON
  */
-class EditForm extends Component {
+class FormBuilder extends Component {
 
     /**
      * Extract the relevant form template from Redux store corresponding to the formID provided as param in the props
      */
     getFormTemplateFromParam() {
         return this.props.formTemplates.filter((formTemplate) => {
-            return (formTemplate.formID === FormIDFromParam);
+            return (formTemplate.formID === this.props.formIDFromParam);
         })
     }
 
@@ -92,7 +92,7 @@ class EditForm extends Component {
                             key={fieldName}
                             {...formField}
                             component={FIELD_TYPE}
-                            value={fieldData}
+                            value={"Option3"}
                         />
                     )
                 })
@@ -113,14 +113,14 @@ class EditForm extends Component {
     }
 }
 
-// EditForm = reduxForm({
+// FormBuilder = reduxForm({
 //     form: "testForm"
-// })(EditForm);
+// })(FormBuilder);
 
-EditForm = reduxForm()(EditForm);
+FormBuilder = reduxForm()(FormBuilder);
 
 /**
- * The following function maps state from redux store to props for the component EditForm (wrapped by reduxForm)
+ * The following function maps state from redux store to props for the component FormBuilder (wrapped by reduxForm)
  * @param {object} state 
  * @param {object} ownProps 
  * @return {object} 
@@ -130,8 +130,8 @@ const mapStateToProps = (state, ownProps) => {
     return {
         formTemplates: state.formTemplates,
         formData: state.form,
-        form: ownProps.dummyProp // Replace by ownProps.param.formID
+        form: `${ownProps.dummyProp}.ID` // Replace by ownProps.param.formID
     }
 }
 
-export default EditForm = connect(mapStateToProps)(EditForm);
+export default FormBuilder = connect(mapStateToProps)(FormBuilder);

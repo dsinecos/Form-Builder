@@ -1,10 +1,10 @@
 # Writing a FormBuilder
 ## Using React-Native, Nativebase, Redux-form and Redux-persist
 
-This application renders basic form components from a JSON based form config file.
+This application uses a JSON as a source to render forms. The use for this is to be able to render dynamic forms by defining their configuration (form fields, options etc) as a JSON
 
 #### Libraries used
-  - React-Native 
+  - React-Native and Expo
   - Nativebase (As the UI kit)
   - Redux-form (For integrating the form with redux store)
   - Redux-persist (To provide form data persistence across application restarts)
@@ -13,7 +13,9 @@ This application renders basic form components from a JSON based form config fil
 
 1. #### Create the basic form components using Nativebase
 
-Each component can have one of two modes - `edit` or `preview`. The mode of the component dictates whether it is enabled or disabled for input.
+A form component refers to a field in the form. Different components provide options for different kinds of input - text, radio, checkbox, picker etc.
+
+Each component can be rendered in one of two modes - `edit` or `preview`. The mode of the component dictates whether it is enabled or disabled for input.
 
 The following code snippet demonstrates creating a Radio input component using the radio component provided by Nativebase.
 
@@ -149,6 +151,21 @@ class RadioInput extends Component {
 }
 ```
 
+`setBackgroundColorInPreview`
+```javascript
+    setBackgroundColorInPreview(value) {
+        if (this.isPreviewMode() && this.isRadioSelected(value)) {
+            return {
+                backgroundColor: '#cbeda6'
+            }
+        }
+
+        return {
+            backgroundColor: 'transparent'
+        }
+    }
+```
+
 The component state `selectedValue` is expected to be updated via `value` props using the following component lifecycle hooks.
 
 The following lifecycle method `componentWillMount` checks if `value` props has been provided and assigns it to the state `selectedValue`. If `value` is null, it checks if a `default` option has been provided and assigns it to the state `selectedValue`. If neither have been provided it sets the `selectedValue` state to an empty string.
@@ -194,6 +211,7 @@ When the state is updated, `componentDidUpdate` will be invoked again, but will 
       - [Reference - Building a reducer plugin for dynamically named forms](https://stackoverflow.com/a/49918816/7640300)
       - [Reference - Building a reducer plugin for dynamically named forms - Github Issue](https://github.com/erikras/redux-form/issues/3050#issuecomment-308002277)
 
+
 3. #### Setting up redux-persist
     ##### Objectives
     - Setup redux-persist@4.6.0 [Reference - Redux@4.x Documentation](https://github.com/rt2zz/redux-persist/tree/v4)
@@ -208,5 +226,7 @@ When the state is updated, `componentDidUpdate` will be invoked again, but will 
     - [Reference - Make your offline-first React app with Redux-Offline](http://jslancer.com/blog/2017/05/23/no-internet-no-problem/)
     - [Reference - Introducing Redux Offline: Offline-First Architecture for Progressive Web Applications and React Native](https://hackernoon.com/introducing-redux-offline-offline-first-architecture-for-progressive-web-applications-and-react-68c5167ecfe0)
     - [Reference - Adding Offline support to Redux](https://medium.com/@ianovenden/adding-offline-support-to-redux-ac8eb8873035)
+    - [Reference - Creating an Offline-First React Native App](https://medium.com/@ballinst/creating-an-offline-first-react-native-app-ecdf0dcd853c)
 
+5. #### Setting up the rendering engine to render forms from JSON
 

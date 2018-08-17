@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import EditForm from './EditForm';
+import FormBuilder from './FormBuilder';
 
 class FormContainer extends Component {
     render() {
         return (
             <View>
-                <EditForm dummyProp={"formNameFromParam"} />
+                <FormBuilder dummyProp={"FormID"} formIDFromParam={"testFormID"}/>
             </View>
 
         )

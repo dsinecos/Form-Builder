@@ -2,6 +2,7 @@
 
 **Libraries used**
   - `redux-persist@4.x`
+
 *I have used `redux-persist` version 4.x and not 5.x because I plan to add `redux-offline` to the application which integrates smoothly with `redux-persist` version 4.x by default.*
 
 ## Persist form data in local storage 

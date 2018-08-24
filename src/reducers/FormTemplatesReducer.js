@@ -28,7 +28,7 @@ const INITIAL_STATE = [
             },
             {
                 name: "testRadio",
-                label: "Testing Radio buttons from Redux",
+                label: "Testing Radio buttons",
                 default: "Value3",
                 fieldType: "RADIO",
                 radioOptions: [

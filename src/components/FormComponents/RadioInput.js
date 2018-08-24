@@ -16,35 +16,35 @@ import {
 
 class RadioInput extends Component {
 
-    constructor() {
-        super();
-        this.state = { selectedValue: "" }
-    }
+    // constructor() {
+    //     super();
+    //     this.state = { selectedValue: "" }
+    // }
 
-    componentWillMount() {
-        console.log("Props given to radio input");
-        console.log(this.props);
-        console.log("Value ", this.props.value);
-        console.log("Default ", this.props.default);
+    // componentWillMount() {
+    //     console.log("Props given to radio input");
+    //     console.log(this.props);
+    //     console.log("Value ", this.props.value);
+    //     console.log("Default ", this.props.default);
 
-        this.setState({ selectedValue: this.props.input.value || this.props.default || "" });
-    }
+    //     // this.setState({ selectedValue: this.props.input.value || this.props.default || "" });
+    // }
 
     /**
      * Updates the selected radio using props provided by the parent component in this.props.value
      * @param {object} prevProps 
      */
-    componentDidUpdate(prevProps) {
-        console.log("Component did update");
+    // componentDidUpdate(prevProps) {
+    //     console.log("Component did update");
 
-        const prevValue = prevProps.input.value;
-        const currentValue = this.props.input.value;
+    //     const prevValue = prevProps.input.value;
+    //     const currentValue = this.props.input.value;
 
-        // This check is applied to avoid getting into an infinite loop when component is updated
-        if (currentValue !== prevValue) {
-            this.setState({ selectedValue: currentValue });
-        }
-    }
+    //     // This check is applied to avoid getting into an infinite loop when component is updated
+    //     if (currentValue !== prevValue) {
+    //         this.setState({ selectedValue: currentValue });
+    //     }
+    // }
 
     onRadioSelect(value) {
         // Call the onChange function provided on this.props.input
@@ -65,7 +65,8 @@ class RadioInput extends Component {
     }
 
     isRadioSelected(value) {
-        return this.state.selectedValue === value;
+        const selectedValue = this.props.input.value || this.props.default || "";
+        return selectedValue === value;
     }
 
     setBackgroundColorInPreview(value) {

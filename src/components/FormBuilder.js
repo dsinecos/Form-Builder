@@ -30,7 +30,7 @@ class FormBuilder extends Component {
      */
     getFormTemplateFromParam() {
         return this.props.formTemplates.filter((formTemplate) => {
-            return (formTemplate.formID === this.props.formIDFromParam);
+            return (formTemplate.formID === this.props.formID);
         })
     }
 
@@ -61,31 +61,24 @@ class FormBuilder extends Component {
         }
     }
 
+    /**
+     * The `renderForm` function 
+     * 1. Fetches the form template from the redux-store based on the formTemplateID param provided to the FormBuilder component as props
+     * 2. Builds the JSX for each field in the form template using custom form components
+     * 3. Links the fields to redux-store using the `Field` component provided by `redux-form`
+     * @returns {Array<JSX>} Returns an array of JSX, each element representing the JSX for a form field
+     */
+
     renderForm() {
 
         let formTemplate = this.getFormTemplateFromParam();
-        console.log("Form template");
-        console.log(formTemplate);
         const formFields = formTemplate[0].formFields;
-        console.log("Form fields");
-        console.log(formFields);
-
-        const formName = this.props.dummyProp;
-        console.log("Name from redux-form ", this.props.form);
 
         return formFields
             .map(
                 (formField) => {
                     const FIELD_TYPE = this.getComponentForField(formField.fieldType);
                     const fieldName = formField.name;
-                    // Get field data from redux store
-                    const fieldData = this.props.formData[formName] ? this.props.formData[formName].values ? this.props.formData[formName].values[fieldName] : "" : "";
-                    console.log("Field data ", fieldData);
-
-                    // console.log("Printing out redux store prop value");
-                    // console.log(this.props.formData[formName].values[fieldName]);
-                    // console.log("Field Data");
-                    // console.log(fieldData);
 
                     return (
                         <Field
@@ -95,16 +88,11 @@ class FormBuilder extends Component {
                             value={"Option3"}
                         />
                     )
-                })
+                }
+            )
     }
 
     render() {
-        console.log("This is the formName ", this.props.dummyProp);
-        console.log("This is the formData ");
-        console.log(this.props.formData[this.props.dummyProp]);
-
-        console.log(this.props.formData[this.props.dummyProp] ? this.props.formData[this.props.dummyProp].values ? this.props.formData[this.props.dummyProp].values.testRadio : "Nothing" : "Nothing");
-
         return (
             <View>
                 {this.renderForm()}
@@ -112,10 +100,6 @@ class FormBuilder extends Component {
         )
     }
 }
-
-// FormBuilder = reduxForm({
-//     form: "testForm"
-// })(FormBuilder);
 
 FormBuilder = reduxForm()(FormBuilder);
 
@@ -130,7 +114,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         formTemplates: state.formTemplates,
         formData: state.form,
-        form: `${ownProps.dummyProp}.ID` // Replace by ownProps.param.formID
+        form: `${ownProps.formID}.userID`
     }
 }
 

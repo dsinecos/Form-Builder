@@ -9,50 +9,34 @@ import { Provider } from 'react-redux';
 // import reduxStore from './src/store';
 import Initialize from './src/store';
 
-import devToolsEnhancer from 'remote-redux-devtools';
-
 import {
   Container,
   Header,
   Content,
-  Form,
-  Item,
-  Picker,
   Icon,
   Left,
   Right,
   Button,
   Body,
-  Title,
-  Input,
-  Label,
-  Textarea,
   Text,
-  ListItem,
-  Switch,
-  CheckBox,
-  Radio,
-  List,
   Segment,
   Spinner,
-  DatePicker
 } from 'native-base';
 
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
-import EditForm from './src/components/EditForm';
-import FormContainer from './src/components/FormContainer';
+import FormScreen from './src/components/FormScreen';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { loading: true, checked: false, switchValue: false, selected: "key2", radioSelection: true, chosenDate: new Date() };
-    this.setDate = this.setDate.bind(this);
+    this.state = { loading: true };
+    // this.setDate = this.setDate.bind(this);
   }
 
-  setDate(newDate) {
-    this.setState({ chosenDate: newDate });
-  }
+  // setDate(newDate) {
+  //   this.setState({ chosenDate: newDate });
+  // }
 
   async componentWillMount() {
     await Expo.Font.loadAsync({
@@ -63,16 +47,16 @@ export default class App extends React.Component {
     this.setState({ loading: false });
   }
 
-  onValueChange(value) {
-    this.setState({
-      selected: value
-    });
-  }
+  // onValueChange(value) {
+  //   this.setState({
+  //     selected: value
+  //   });
+  // }
 
-  test(value) {
-    console.log("For textarea");
-    console.log(value);
-  }
+  // test(value) {
+  //   console.log("For textarea");
+  //   console.log(value);
+  // }
 
   renderHeader() {
     return (
@@ -121,7 +105,7 @@ export default class App extends React.Component {
           {this.renderHeader()}
           <Content padder>
             {/* <EditForm /> */}
-            <FormContainer />
+            <FormScreen />
           </Content>
         </Container>
       </Initialize>

@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import FormBuilder from './FormBuilder';
 
-class FormContainer extends Component {
+class FormScreen extends Component {
     render() {
         return (
             <View>
-                <FormBuilder dummyProp={"FormID"} formIDFromParam={"testFormID"}/>
+                <FormBuilder formID={"testFormID"}/>
             </View>
 
         )
     }
 }
 
-export default FormContainer;
+export default FormScreen;
